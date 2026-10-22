@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.15...3.27)
+project(pystl LANGUAGES CXX)
+find_package(pybind11 CONFIG REQUIRED)
+pybind11_add_module(pystl src/pystl.cpp)
+target_compile_features(pystl PRIVATE cxx_std_20)
+install(TARGETS pystl DESTINATION .)
