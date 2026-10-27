@@ -35,10 +35,10 @@ Quick Start:-
 
 Here is a quick example of how to use the vector in your Python scripts. Because it strictly follows C++ rules, remember that you cannot assign a value to an index that hasn't been created yet.
 
-from pystl import vector
+`from pystl import vector`
 
 # Initialize a vector with 10 slots (filled with zeros)
-vec = vector(10)
+`vec = vector(10)`
 
 # Overwrite existing slots using normal Python syntax
 `vec[0] = 6`
