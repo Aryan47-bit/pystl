@@ -1,19 +1,20 @@
-#include <pybind11/pybind11.h>
-#include <pybind11/stl.h>
-#include <vector>
-
+#include<pybind11/pybind11.h>
+#include<pybind11/stl.h>
+#include<stl>
+using namespace std;
 namespace py = pybind11;
 
 class FastVector {
-    std::vector<int> data;
+    vector<int> data;
 public:
-    void append(int val) { data.push_back(val); }
-    int get(int index) { return data.at(index); }
-    int size() const { return data.size(); }
+    void append(int val){data.push_back(val);}
+    int get(int index){return data.at(index);}
+    int size() const{return data.size();}
 };
 
+
 PYBIND11_MODULE(pystl, m) {
-    py::class_<FastVector>(m, "Vector")
+    py::class_<FastVector>(m, "vector")
         .def(py::init<>())
         .def("append", &FastVector::append)
         .def("get", &FastVector::get)

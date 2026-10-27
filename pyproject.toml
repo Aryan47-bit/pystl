@@ -4,7 +4,7 @@ build-backend = "scikit_build_core.build"
 
 [project]
 name = "pystl"
-version = "0.1.0"
-description = "High-performance C++ STL containers for Python"
+version = "0.1.1"
+description = "Implementation of C++'s STL library into Python as a packaged module with the same high performance as native C++"
 readme = "README.md"
 requires-python = ">=3.8"

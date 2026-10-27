@@ -1,8 +1,9 @@
-import pystl
+from pystl import Vector
 
-my_vec = pystl.Vector()
-my_vec.append(100)
-my_vec.append(200)
+vec = Vector()
+vec.append(6)
+vec.append(7)
+vec.append(67)
 
-print(f"Vector size: {len(my_vec)}")
-print(f"First element: {my_vec.get(0)}")
+print("Vector size: ", len(vec))
+print("First element: ",vec.get(2))
