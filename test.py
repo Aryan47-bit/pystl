@@ -1,9 +1,20 @@
-from pystl import Vector
-
-vec = Vector()
-vec.append(6)
-vec.append(7)
-vec.append(67)
+import pystl
+vec = pystl.vector(10)
+vec[0] = 6
+vec[1] = 7
+print("Size right before the crash:", len(vec))
+vec[2] = 67
 
 print("Vector size: ", len(vec))
-print("First element: ",vec.get(2))
+print("First element: ",vec[0])
+print("Size of vector: ", len(vec))
+print("Max size of Vector: ", vec.maxsize())
+vec.resize(6)
+print("Size of vector: ", len(vec)) 
+print("Max size of Vector: ", vec.maxsize())
+print("Capacity of Vector: ", vec.capacity())
+print("Vector is empty: ",vec.isEmpty())
+vec.reserve(5)
+vec.shrinkFit()
+print("Max size of Vector: ", vec.maxsize())
+print("Capacity of Vector: ", vec.capacity())
