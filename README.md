@@ -23,12 +23,12 @@ To build this project, you will need a C++ compiler (like MSVC or GCC) and CMake
 
 Clone this repository, navigate to the folder, and run:
 
-pip install .
+`pip install .`
 
 
 If you are actively developing and want to force a clean rebuild without pip using a cached version, run:
 
-pip install . --no-cache-dir --force-reinstall
+`pip install . --no-cache-dir --force-reinstall`
 
 
 Quick Start:-
@@ -41,26 +41,31 @@ from pystl import vector
 vec = vector(10)
 
 # Overwrite existing slots using normal Python syntax
-vec[0] = 6
-vec[1] = 7
-vec[2] = 67
+`vec[0] = 6`
+
+`vec[1] = 7`
+
+`vec[2] = 67`
+
 (😝)
 
 
 # Append dynamically expands the array and attaches to the end
-vec.append(6767)
+`vec.append(6767)`
 
 # Access C++ specific memory diagnostics
-print("Vector size: ", len(vec))
-print("Memory capacity: ", vec.capacity())
-print("Max size: ", vec.maxsize())
+`print("Vector size: ", len(vec))`
+
+`print("Memory capacity: ", vec.capacity())`
+
+`print("Max size: ", vec.maxsize())`
 
 # Free up unused memory capacity
-vec.shrinkFit()
+`vec.shrinkFit()`
 
 Of course, this is just the beginning. I'll be working on this consistently and adding each and every essential thing from STL into this.
 
-Contributing
+# Contributing :-
 
 If you want to help add more data structures or improve the pybind11 bindings, feel free to open a pull request.
 
