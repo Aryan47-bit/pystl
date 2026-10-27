@@ -2,7 +2,6 @@ import pystl
 vec = pystl.vector(10)
 vec[0] = 6
 vec[1] = 7
-print("Size right before the crash:", len(vec))
 vec[2] = 67
 
 print("Vector size: ", len(vec))
