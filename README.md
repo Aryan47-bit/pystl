@@ -1,4 +1,6 @@
 # pystl
+
+(NOT CURRENTLY WORKING AT HIGHER SPEEDS, SOLUTION TO WHICH WILL BE PUSHED VERY SOON, TILL THEN, TESTING WILL BE SLOWER THAN NATIVE PYTHON OR NUMPY FOR ANY ARRAY SIZE. WILL BE FIXED SOON.)
 Welcome to pystl. This is a project aimed at bringing the C++ Standard Template Library (STL) directly into Python.
 
 Python lists are great, but they hide a lot of the underlying memory management from the user. I built this wrapper using pybind11 to give Python developers access to the strict memory rules, capacity management, and performance characteristics of native C++ STL containers.
