@@ -1,4 +1,6 @@
 # pystl
+
+(NOT CURRENTLY WORKING AT HIGHER SPEEDS, SOLUTION TO WHICH WILL BE PUSHED VERY SOON, TILL THEN, TESTING WILL BE SLOWER THAN NATIVE PYTHON OR NUMPY FOR ANY ARRAY SIZE. WILL BE FIXED SOON.)
 Welcome to pystl. This is a project aimed at bringing the C++ Standard Template Library (STL) directly into Python.
 
 Python lists are great, but they hide a lot of the underlying memory management from the user. I built this wrapper using pybind11 to give Python developers access to the strict memory rules, capacity management, and performance characteristics of native C++ STL containers.
@@ -23,44 +25,49 @@ To build this project, you will need a C++ compiler (like MSVC or GCC) and CMake
 
 Clone this repository, navigate to the folder, and run:
 
-pip install .
+`pip install .`
 
 
 If you are actively developing and want to force a clean rebuild without pip using a cached version, run:
 
-pip install . --no-cache-dir --force-reinstall
+`pip install . --no-cache-dir --force-reinstall`
 
 
 Quick Start:-
 
 Here is a quick example of how to use the vector in your Python scripts. Because it strictly follows C++ rules, remember that you cannot assign a value to an index that hasn't been created yet.
 
-from pystl import vector
+`from pystl import vector`
 
 # Initialize a vector with 10 slots (filled with zeros)
-vec = vector(10)
+`vec = vector(10)`
 
 # Overwrite existing slots using normal Python syntax
-vec[0] = 6
-vec[1] = 7
-vec[2] = 67
+`vec[0] = 6`
+
+`vec[1] = 7`
+
+`vec[2] = 67`
+
 (😝)
 
 
 # Append dynamically expands the array and attaches to the end
-vec.append(6767)
+`vec.append(6767)`
 
 # Access C++ specific memory diagnostics
-print("Vector size: ", len(vec))
-print("Memory capacity: ", vec.capacity())
-print("Max size: ", vec.maxsize())
+`print("Vector size: ", len(vec))`
+
+`print("Memory capacity: ", vec.capacity())`
+
+`print("Max size: ", vec.maxsize())`
 
 # Free up unused memory capacity
-vec.shrinkFit()
+`vec.shrinkFit()`
 
 Of course, this is just the beginning. I'll be working on this consistently and adding each and every essential thing from STL into this.
 
-Contributing
+# Contributing :-
 
 If you want to help add more data structures or improve the pybind11 bindings, feel free to open a pull request.
 
