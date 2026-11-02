@@ -1,5 +1,5 @@
-#include <pybind11/pybind11.h>
-#include <pybind11/stl.h>
+#include <nanobind/nanobind.h>
+#include <nanobind/ndarray.h>
 #include <vector>
 #include <algorithm>
 #include <omp.h>
@@ -7,14 +7,14 @@
 #include <execution>
 #include <cstring>
 
-namespace py = pybind11;
+namespace nb = nanobind;
 
 template <typename T>
 void gilDrop(size_t size, T&& op) {
     if (size < 100000) {
         op();
     } else {
-        py::gil_scoped_release release; 
+        nb::gil_scoped_release release; 
         op();
     }
 }
@@ -67,6 +67,7 @@ void rsort(int* raw, long long sz) {
         std::memcpy(raw, buffer.data(), sz * sizeof(int));
     }
 }
+
 class Vector {
     std::vector<int> vec;
 public:
@@ -107,7 +108,7 @@ public:
     }
     
     void sort() {
-        py::gil_scoped_release release;
+        nb::gil_scoped_release release;
         rsort(vec.data(), vec.size());
     }
     
@@ -185,17 +186,16 @@ public:
                     }
                 }
             }
-            
             finalMin = globalMin; 
         });
         return finalMin;
     }
 };
 
-PYBIND11_MODULE(pystl, m) {
-    py::class_<Vector>(m, "vector", py::buffer_protocol()) 
-        .def(py::init<>())
-        .def(py::init<int>())
+NB_MODULE(pystl, m) {
+    nb::class_<Vector>(m, "vector") 
+        .def(nb::init<>())
+        .def(nb::init<int>())
         .def("set", &Vector::set)
         .def("append", &Vector::append)
         .def("get", &Vector::get)
@@ -212,13 +212,15 @@ PYBIND11_MODULE(pystl, m) {
         .def("add_scalar", &Vector::add_scalar)
         .def("sort", &Vector::sort)
         .def("sum", &Vector::sum)
-        .def("fill", &Vector::fill, py::arg("val") = 0)
+        .def("fill", &Vector::fill, nb::arg("val") = 0)
         .def("max", &Vector::max)
         .def("min", &Vector::min)
-        .def_buffer([](Vector &v) -> py::buffer_info {
-            return py::buffer_info(
-                v.data(), sizeof(int), py::format_descriptor<int>::format(),
-                1, { v.size() }, { sizeof(int) }
+        .def("to_numpy", [](Vector &v) {
+            return nb::ndarray<nb::numpy, int, nb::shape<-1>>(
+                v.data(), 
+                { v.size() }, 
+                nb::handle() 
             );
-        });
-}
+        }); 
+            
+        };
